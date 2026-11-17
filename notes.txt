@@ -1,0 +1,18 @@
+TO-DO:
+- Re-Run all kite_small, hexamesh, torus, hypercube experimens with 3 additional paths.
+- Re-Run cost functions all for those that don't perform.
+
+TO-DO LOW PRIORITY:
+- valid_next_hops as flat list instead of VC-range throughout code.
+- Also discuss RT build time and have version that uses one CDG per layer and only allows for hops to higher layers like LASH-TOR.
+
+THOUGHTS:
+- Discuss percentage of bound somewhere?
+
+PAPER:
+- Analysis of routing table size: Table with Big-O notation, Some actual numbers from experiments (collect that metric), Pareto-Frontier-Plot with performance vs. routing table size (for some fixed topology and traffic pattern or perhaps for the trace).
+- Pseudo-Code of LASH-PAT.
+- Perhaps a setting where the VC can't change (Harder restrictions on routing table size). For LASH-PAT, we can just always return the same VC in the get_next_hop() function except when the VC is -1 (injection). Compare to those RFs that can work with such small routing tables. Perhaps vary the number of paths to get a line in a perf-vs-size plot. Perhapps have two such lines, one for regular LASH-PAT and one for LASH-PAT with fixed VC.
+- Layering: For LASH and DFSSSP, we set as many layers as required and then assign multiple VCs to each layer (not necessarily the same number). For A-LASH, we try to add paths to multiple layers whenever possible, as described in the paper. For LASH-TOR and LASH-PAT, where the number of layer directly affects RT size and where there isn't necessarily a minimum number of layers due to fallback routing, we use the n_layers as a parameters.
+
+
